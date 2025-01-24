@@ -14,4 +14,10 @@ RUN apt-get update && apt-get install -y nano
 
 COPY app.py /app/
 
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "9999"]
+ENV PYTHONPATH=/ragflow/
+ENV HF_ENDPOINT=https://hf-mirror.com
+ADD docker/entrypoint.sh ./entrypoint.sh
+ADD docker/.env ./
+RUN chmod +x ./entrypoint.sh
+
+ENTRYPOINT ["./entrypoint.sh"]
