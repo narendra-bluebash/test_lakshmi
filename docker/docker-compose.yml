@@ -9,6 +9,8 @@ services:
         condition: service_healthy
     image: ragflow:latest
     container_name: ragflow-server
+    ports:
+      - 9999:9999
     networks:
       - ragflow
     restart: always
