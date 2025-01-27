@@ -23,6 +23,13 @@ valid_emails = [
     "user@gmail.com",
 ]
 
+@app.get('/helth')
+async def check_email():
+    return {
+        "status": "ok"
+    }
+
+
 @app.get('/email')
 async def check_email(request: Request, token: str = Depends(verify_token)):
     email = request.query_params.get("email")
